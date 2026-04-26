@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class AppCaracter {
 
-    public static void main(String[] args) throws Exception {
+  public static void main(String[] args) throws Exception {
 
         Scanner teclado = new Scanner(System.in);
 
@@ -21,3 +21,13 @@ public class AppCaracter {
             desplazamiento = teclado.nextInt();
             teclado.nextLine();
         } while (desplazamiento < -25 || desplazamiento > 25);
+        do {
+            System.out.println("Introduce el nombre del fichero de entrada:");
+            nombreEntrada = teclado.nextLine();
+
+            ficheroEntrada = new File("src/ficheros/" + nombreEntrada);
+
+            if (!ficheroEntrada.exists()) {
+                System.out.println("El fichero no existe.");
+            }
+        } while (!ficheroEntrada.exists());
