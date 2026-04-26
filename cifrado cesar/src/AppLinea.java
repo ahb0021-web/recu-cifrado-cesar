@@ -32,4 +32,15 @@ public class AppLinea {
             if (!ficheroEntrada.exists()) {
                 System.out.println("El fichero no existe.");
             }
-        }
+        }while (!ficheroEntrada.exists());
+         do {
+            System.out.println("Introduce la ruta absoluta del fichero de salida:");
+            rutaSalida = teclado.nextLine();
+
+            ficheroSalida = new File(rutaSalida);
+
+            if (ficheroSalida.exists()) {
+                System.out.println("El fichero de salida ya existe.");
+            }
+
+        } while (ficheroSalida.exists());
