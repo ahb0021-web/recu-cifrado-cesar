@@ -42,3 +42,12 @@ public class AppCaracter {
               }
   
           } while (ficheroSalida.exists());
+           System.out.println("El fichero de salida ya existe.");
+            }
+
+        }while(ficheroSalida.exists());
+FileReader lector = new FileReader(ficheroEntrada);
+        FileWriter escritor = new FileWriter(ficheroSalida);
+
+        int caracterInt;
+        

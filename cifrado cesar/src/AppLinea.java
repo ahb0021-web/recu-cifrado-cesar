@@ -44,3 +44,12 @@ public class AppLinea {
             }
 
         } while (ficheroSalida.exists());
+ileReader lector = new FileReader(ficheroEntrada);
+        FileWriter escritor = new FileWriter(ficheroSalida);
+
+        BufferedReader lectorBF = new BufferedReader(lector);
+        BufferedWriter escritorBF = new BufferedWriter(escritor);
+
+        String lineaActual;
+
+         
