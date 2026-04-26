@@ -1,3 +1,20 @@
+import java.io.Buffered
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.Scanner;
+
 public class AppLinea {
-  
-}
+
+    public static void main(String[] args) throws Exception {
+
+        Scanner teclado = new Scanner(System.in);
+
+        File ficheroEntrada;
+        File ficheroSalida;
+
+        String nombreEntrada;
+        String rutaSalida;
+
+        int desplazamiento;
