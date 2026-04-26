@@ -18,3 +18,9 @@ public class AppLinea {
         String rutaSalida;
 
         int desplazamiento;
+         do {
+            System.out.println("Introduce el desplazamiento entre -25 y 25:");
+            desplazamiento = teclado.nextInt();
+            teclado.nextLine();
+        } while (desplazamiento < -25 || desplazamiento > 25);
+    
