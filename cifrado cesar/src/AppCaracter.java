@@ -1,11 +1,11 @@
 import java.io.File;
-
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Scanner;
 
 public class AppCaracter {
 
-  public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 
         Scanner teclado = new Scanner(System.in);
 
@@ -16,7 +16,7 @@ public class AppCaracter {
         String rutaSalida;
 
         int desplazamiento;
-         do {
+        do {
             System.out.println("Introduce el desplazamiento entre -25 y 25:");
             desplazamiento = teclado.nextInt();
             teclado.nextLine();
@@ -31,23 +31,43 @@ public class AppCaracter {
                 System.out.println("El fichero no existe.");
             }
         } while (!ficheroEntrada.exists());
-          do {
-              System.out.println("Introduce la ruta absoluta del fichero de salida:");
-              rutaSalida = teclado.nextLine();
-  
-              ficheroSalida = new File(rutaSalida);
-  
-              if (ficheroSalida.exists()) {
-                  System.out.println("El fichero de salida ya existe.");
-              }
-  
-          } while (ficheroSalida.exists());
-           System.out.println("El fichero de salida ya existe.");
+        do {
+            System.out.println("Introduce la ruta absoluta del fichero de salida:");
+            rutaSalida = teclado.nextLine();
+
+            ficheroSalida = new File(rutaSalida);
+
+            if (ficheroSalida.exists()) {
+                System.out.println("El fichero de salida ya existe.");
             }
 
-        }while(ficheroSalida.exists());
-FileReader lector = new FileReader(ficheroEntrada);
+        } while (ficheroSalida.exists());
+
+        FileReader lector = new FileReader(ficheroEntrada);
         FileWriter escritor = new FileWriter(ficheroSalida);
 
         int caracterInt;
-        
+        while ((caracterInt = lector.read()) != -1) {
+
+            char caracter = (char) caracterInt;
+
+            if (caracter >= '!') {
+                caracter = (char) (caracter + desplazamiento);
+            }
+
+            System.out.print(caracter);
+
+            escritor.write(caracter);
+        }
+
+        lector.close();
+        escritor.close();
+        teclado.close();
+
+        System.out.println();
+        System.out.println("-------------------------------------------");
+        System.out.println("------------ ARCHIVO PROCESADO ------------");
+        System.out.println("-------------------------------------------");
+
+    }
+}

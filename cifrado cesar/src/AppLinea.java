@@ -1,5 +1,6 @@
-import java.io.Buffered
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -18,12 +19,12 @@ public class AppLinea {
         String rutaSalida;
 
         int desplazamiento;
-         do {
+        do {
             System.out.println("Introduce el desplazamiento entre -25 y 25:");
             desplazamiento = teclado.nextInt();
             teclado.nextLine();
         } while (desplazamiento < -25 || desplazamiento > 25);
-   do {
+        do {
             System.out.println("Introduce el nombre del fichero de entrada:");
             nombreEntrada = teclado.nextLine();
 
@@ -32,8 +33,8 @@ public class AppLinea {
             if (!ficheroEntrada.exists()) {
                 System.out.println("El fichero no existe.");
             }
-        }while (!ficheroEntrada.exists());
-         do {
+        } while (!ficheroEntrada.exists());
+        do {
             System.out.println("Introduce la ruta absoluta del fichero de salida:");
             rutaSalida = teclado.nextLine();
 
@@ -44,12 +45,42 @@ public class AppLinea {
             }
 
         } while (ficheroSalida.exists());
-ileReader lector = new FileReader(ficheroEntrada);
+        FileReader lector = new FileReader(ficheroEntrada);
         FileWriter escritor = new FileWriter(ficheroSalida);
 
         BufferedReader lectorBF = new BufferedReader(lector);
         BufferedWriter escritorBF = new BufferedWriter(escritor);
 
         String lineaActual;
+        while ((lineaActual = lectorBF.readLine()) != null) {
 
-         
+            String lineaFinal = "";
+
+            for (int i = 0; i < lineaActual.length(); i++) {
+
+                char caracter = lineaActual.charAt(i);
+
+                if (caracter >= '!') {
+                    caracter = (char) (caracter + desplazamiento);
+                }
+
+                lineaFinal = lineaFinal + caracter;
+            }
+
+            System.out.println(lineaFinal);
+
+            escritorBF.write(lineaFinal);
+            escritorBF.newLine();
+        }
+
+        lectorBF.close();
+        escritorBF.close();
+        lector.close();
+        escritor.close();
+        teclado.close();
+        System.out.println("-------------------------------------------");
+        System.out.println("------------ ARCHIVO PROCESADO ------------");
+        System.out.println("-------------------------------------------");
+
+    }
+}
